@@ -64,19 +64,35 @@ export const THEME_OPTIONS: { [key: string]: { backgroundColor: string, textColo
 export const VALID_THEME_NAMES = Object.keys(THEME_OPTIONS) as ThemeName[];
 export type ThemeName = keyof typeof THEME_OPTIONS | 'custom';
 
-const ThemeContext = createContext({
+interface ThemeContextType {
+  backgroundColor: string;
+  textColor: string;
+  currentFileColor: string;
+  collinOsColor: string;
+  fontSize: string;
+  setBackgroundColor: (color: string) => void;
+  setTextColor: (color: string) => void;
+  setCurrentFileColor: (color: string) => void;
+  setCollinOsColor: (color: string) => void;
+  setFontSize: (size: string) => void;
+  flashBackgroundColor: () => void;
+  setTheme: (themeName: ThemeName) => void;
+  currentTheme: ThemeName;
+}
+
+const ThemeContext = createContext<ThemeContextType>({
   backgroundColor: 'black',
   textColor: 'white',
   currentFileColor: 'lightblue',
   collinOsColor: 'red',
   fontSize: '1rem',
-  setBackgroundColor: (color: string) => {},
-  setTextColor: (color: string) => {},
-  setCurrentFileColor: (color: string) => {},
-  setCollinOsColor: (color: string) => {},
-  setFontSize: (size: string) => {},
+  setBackgroundColor: () => {},
+  setTextColor: () => {},
+  setCurrentFileColor: () => {},
+  setCollinOsColor: () => {},
+  setFontSize: () => {},
   flashBackgroundColor: () => {},
-  setTheme: (themeName: ThemeName) => {},
+  setTheme: () => {},
   currentTheme: 'dark',
 });
 

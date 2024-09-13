@@ -1,14 +1,23 @@
 "use client"
 
-import { createContext, useContext, useState, type ReactNode } from 'react';
+import { createContext, useContext, useState, type ReactNode, Dispatch, SetStateAction } from 'react';
 
-const UserInputContext = createContext({
+interface UserInputContextType {
+  userInputValueAndCursor: { value: string; cursorPosition: number };
+  userInputValue: string;
+  userInputCursorPosition: number;
+  setUserInputValueAndCursor: Dispatch<SetStateAction<{ value: string; cursorPosition: number }>>;
+  setUserInputValue: (value: string) => void;
+  setUserInputCursorPosition: (cursorPosition: number) => void;
+}
+
+const UserInputContext = createContext<UserInputContextType>({
   userInputValueAndCursor: { value: '', cursorPosition: 0 },
   userInputValue: '',
   userInputCursorPosition: 0,
-  setUserInputValueAndCursor: (_userInputValueAndCursor: { value: string, cursorPosition: number } | ((previousState: { value: string, cursorPosition: number}) => void)) => {},
-  setUserInputValue: (_value: string) => {},
-  setUserInputCursorPosition: (_cursorPosition: number) => {},
+  setUserInputValueAndCursor: () => {},
+  setUserInputValue: () => {},
+  setUserInputCursorPosition: () => {},
 });
 
 export const UserInputProvider = ({ children }: { children: ReactNode }) => {

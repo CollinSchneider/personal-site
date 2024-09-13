@@ -4,9 +4,14 @@ import FileItem from '@/lib/fileItem';
 import { rootDirectory } from '@/lib/fileSystem';
 import { createContext, useContext, useState, type ReactNode } from 'react';
 
-const FileNavigationContext = createContext({
+interface FileNavigationContextType {
+  currentDirectory: InstanceType<typeof FileItem>;
+  setCurrentDirectory: (directory: InstanceType<typeof FileItem>) => void;
+}
+
+const FileNavigationContext = createContext<FileNavigationContextType>({
   currentDirectory: rootDirectory,
-  setCurrentDirectory: (directory: InstanceType<typeof FileItem>) => {},
+  setCurrentDirectory: () => {},
 });
 
 export const FileNavigationProvider = ({ children }: { children: ReactNode }) => {

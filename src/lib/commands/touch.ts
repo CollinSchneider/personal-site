@@ -18,7 +18,7 @@ export const touch = (filenames: string[], currentDirectory: InstanceType<typeof
       type: 'error',
     }
   }
-  const nonDirectoryParentDirectoryIndex = parentDirectories.findIndex(parentDirectory => parentDirectory.isFile());
+  const nonDirectoryParentDirectoryIndex = parentDirectories.findIndex(parentDirectory => parentDirectory?.isFile());
   if (nonDirectoryParentDirectoryIndex !== -1) {
     return {
       output: `not a directory: ${parentDirectoryPaths[nonDirectoryParentDirectoryIndex]}`,
