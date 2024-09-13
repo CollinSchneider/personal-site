@@ -73,6 +73,9 @@ export default function TerminalContent() {
 
   const handleTab = useCallback((currentUserInputValue: string) => {
     evaluateTab(currentUserInputValue, setUserInputValueAndCursor, currentDirectory, lineBlocks, setLineBlocks, flashBackgroundColor);
+    setTimeout(() => {
+      contentRef.current?.scrollTo({ top: contentRef.current.scrollHeight });
+    }, 0)
   }, [currentDirectory, lineBlocks]);
 
   return (
